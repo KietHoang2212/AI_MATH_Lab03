@@ -1,4 +1,4 @@
-# AIMath_Lab2
+# AIMath_Lab3
 
 **Lab 03**: Phân hoạch đồ thị theo thành phần liên thông mạnh sử dụng thuật toán **DFS-based SCC**
 
