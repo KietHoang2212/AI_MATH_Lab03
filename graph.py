@@ -89,11 +89,13 @@ class Graph:
         for nextVertex in startVertex.getConnections():
             if nextVertex.getColor() == 'white':
                 nextVertex.setPred(startVertex)
-                self.dfsvisit(nextVertex, time, is_print)
+                time = self.dfsvisit(nextVertex, time, is_print)
 
         startVertex.setColor('black')
         time += 1
         startVertex.setFinish(time)
+
+        return time
 
 
     def traverse_dfs(self):
@@ -129,16 +131,16 @@ class Graph:
         return g_t
     
     def print_scc(self):
-        # Step 1: DFS on the graph G to calculate the number of steps (from the root to each vertex)
+        # Step 1: DFS on the graph G to compute finishing times for each vertex
         self.dfs()
 
         # Step 2: Get the transpose graph G^T
         g_t = self.get_transpose()
 
-        # Step 3: DFS on the graph G^T (explore each vertex in order of steps from the root in descending order)
+        # Step 3: DFS on the graph G^T (explore each vertex in order of decreasing finishing time)
 
-        # Get desceding order of G^T (equivalent to ascending order on G)
-        vert_order = sorted(self.getVertices(), key=lambda x: self.getVertex(x).getFinish())
+        # Get desceding order of finishing time
+        vert_order = sorted(self.getVertices(), key=lambda x: self.getVertex(x).getFinish(), reverse=True)
         # print(vert_order)
 
         time = 0
